@@ -122,6 +122,7 @@ class Encoder(nn.Module):
             # Look for layers whose spatial dimension match the current block
             for i, l in enumerate(self.layer_sizes):
                 if y.shape[-1] == l:
+                    #"never goes in"
                     # size match, output the latent codes for this layer
                     out[i] = self.heads[i](y, mask).permute(
                         0, 2, 3, 1).contiguous()
@@ -364,7 +365,7 @@ class Model(nn.Module):
         else:
             if custom_bg is not None:
                 out = custom_bg[None, :, None, None].clamp(0, 1).repeat(
-                    bs, 1, self.canvas_size, self.canvas_size)                
+                    bs, 1, self.canvas_size, self.canvas_size)
             else:
                 out = self.bg_color[None, :, None, None].clamp(0, 1).repeat(
                     bs, 1, self.canvas_size, self.canvas_size)

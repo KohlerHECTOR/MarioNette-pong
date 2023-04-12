@@ -126,6 +126,7 @@ class SpriteDataset(th.utils.data.Dataset):
         self.sprites = []
         for f in files:
             sprite = Image.open(f).convert('RGBA')
+
             w, h = sprite.size
             size = max(w, h)
             if size > 16:

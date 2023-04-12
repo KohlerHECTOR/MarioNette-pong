@@ -37,6 +37,7 @@ def main(args):
     elif args.sprites:
         Dataset = datasets.SpriteDataset
     else:
+        print("ok")
         Dataset = datasets.AnimationDataset
     data = Dataset(args.data, args.canvas_size)
 
@@ -125,6 +126,7 @@ def main(args):
     trainer.train(dataloader,
                   num_epochs=max(1, args.num_steps * args.bs // len(data)),
                   val_dataloader=None, starting_epoch=starting_epoch)
+    th.save(trainer.interface.model.state_dict(), "marionet_atari_pong")
 
 
 if __name__ == '__main__':
