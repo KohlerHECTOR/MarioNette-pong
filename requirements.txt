@@ -1,3 +1,5 @@
 jupyter
 torch
 torchvision
+torch-tools
+tensorboard
